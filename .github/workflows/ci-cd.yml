@@ -1,0 +1,31 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main  # Виконувати дії після пушу в гілку main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Використовуємо останню версію Ubuntu
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Клонує репозиторій
+          
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Використовуємо Node.js 20
+          
+      - name: Install dependencies
+        run: npm install  # Встановлюємо залежності
+
+      - name: Run tests
+        run: npm test  # Запускаємо тести
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .  # Використовуємо поточний каталог
+          push: true  # Відправляємо Docker-образ
+          tags: ${{ secrets.DOCKER_USERNAME }}/wave_translation:latest
