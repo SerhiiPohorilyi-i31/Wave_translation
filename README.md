@@ -2,7 +2,7 @@
 
 ## How to setup project
 1. run in terminal `make prepare`
-2. in `backend/.env` file fill lines `JWT_SECRET` and `GOOGLE_API_KEY` (Lev has the values)
+2. in `backend/.env` file fill lines `JWT_SECRET` and `GOOGLE_API_KEY`
 3. run in terminal `make build`
 4. stop project: `make down`
 
